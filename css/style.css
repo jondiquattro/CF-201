@@ -1,5 +1,21 @@
 
-
+header ul {
+    display: inline-flex;
+    float: right;
+}
+header li {
+    margin: 5px;
+}
+header img h1 {
+    float: left
+    
+}
+header h1{
+    font-size: 30px;
+}
+header {
+    height: 110px;
+}
 aside {
     width: 200px;
     border-style: solid;
@@ -7,13 +23,22 @@ aside {
     border-color: blue;
     height: 600px;
     float: left;
+    margin: 10px 100px 10px 10px;
 }
 button{
     width: 650px;
+    float: left;
+    margin-left: 150px;
+    margin-top: 10px;
 }
 div {
-    width: 975px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: blue;
+    /* width: 350px;
+    height: 350px; */
+    float: left;
+    margin-top: 10px;
+
+}
+#textDiv{
+    width: 900px;
+    height: auto;
 }
