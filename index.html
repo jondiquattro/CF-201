@@ -11,7 +11,8 @@
 <body>
 
     <header>
-        <img src="http://placehold.it/80x40/000" alt="logo">
+        <img src="http://placehold.it/100x100/000" alt="logo">
+        <h1>Title</h1>
         <ul>
             <li>
                 <h3>Home</h3>
@@ -25,24 +26,37 @@
             <li>
                 <h3>Contact</h3>
             </li>
-            <h1>Title</h1>
         </ul>
     </header>
     <aside>
         <h1>
             Results:
         </h1>
-    </aside>
-    <img src="http://placehold.it/325x325/000" alt="logo">
-    <img src="http://placehold.it/325x325/000" alt="logo">
-    <img src="http://placehold.it/325x325/000" alt="logo">
+    </aside class="item-blocks">
+    <div>
+        <img id="first-image" src="img/bag.jpg" alt="First Image" height="300" width="300">
+    </div>
+    <div >
+        <img id="second-image" src="img/banana.jpg" alt="Second Image" height="300" width="300">
+    </div>
+    <div>
+    <img id="third-image"src="img/dragon.jpg" alt="Third Image" height="300" width="300">
+    </div>
+
     <button><h1>Vote!</h1></button>
     <div>
+        <ul id="product results">
+<!-- results will be appended here -->
+        </ul>
+    </div>
+    <div id="textDiv">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. 
     </div>
     <footer>
-        
+    
     </footer>
+   <script src"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
 
