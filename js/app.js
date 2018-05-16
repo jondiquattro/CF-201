@@ -1,8 +1,13 @@
 'use strict';
-
+// if (localstorageexisits){
+//   load data from ls
+// }
+// else{create objects}
 
 //global variables
+
 var allPictures = [];
+
 
 var imgEl1 = document.getElementById('first-image');
 var imgEl2 = document.getElementById('second-image');
@@ -75,10 +80,12 @@ function chooseNewPictures() {
 
   picture3index = Math.floor(Math.random() * allPictures.length);
   imgEl3.src = allPictures[picture3index].url; //url is a parameter of the object
-}
+};
+
+function pageStorage(){
+  var strorage = JSON.parse(localStorage.getItem('coolGuy'))
+};
 
 
-
-
-
+pageStorage();
 chooseNewPictures();
