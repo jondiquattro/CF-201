@@ -29,14 +29,14 @@ function Picture (url, name) {  //constructor
   
   pictureObjects.push(this);
 }
-// if (localStorage.key){
-//   console.error('localstorage = key');
-//   pictureObjects = JSON.parse(localStorage.getItem('key'));
+if (localStorage.pictureObjects){
+
+  pictureObjects = JSON.parse(localStorage.getItem('pictureObjects'));
   
   
 
-// }
-// else{
+}
+else{
   new Picture('img/bathroom.jpg', 'bathroom');
   new Picture('img/boots.jpg', 'boots');
   new Picture('img/breakfast.jpg', 'breakfast');
@@ -59,8 +59,8 @@ function Picture (url, name) {  //constructor
   // new Picture('img/wine-glass.jpg', 'wine glass');
   
   
-//   console.error('objects created');
-// };
+  // console.error('objects created');
+};
 
 
 
@@ -114,10 +114,11 @@ function noRepeat(){
 
 function checkTotalClicks() {
  
-  if(totalClicks >= 25){
+  if(totalClicks >= 5){
   getNames();
+  drawChart();
     // renderTotals();
-    // localStorage.setItem('key', JSON.stringify(pictureObjects));
+    localStorage.setItem('pictureObjects', JSON.stringify(pictureObjects));
     sectionEl.removeEventListener('click', sectionCallback);
 
   }
@@ -134,7 +135,7 @@ function chooseNewPictures() {
   
   picture2Index = Math.floor(Math.random() * pictureObjects.length); //outputs a number between 0 and length -1
   picture2.push(picture2Index);
-  console.log(picture2);
+  // console.log(picture2);
   imgEl2.src = pictureObjects[picture2Index].url;
   
   picture3Index = Math.floor(Math.random() * pictureObjects.length);
@@ -164,7 +165,7 @@ function getNames(){
     nameArray[i] = pictureObjects[i].name;
     clicksArray[i]=pictureObjects[i].clicked;
   };
-  
+  // console.log(clicksArray);
 };
 
 
@@ -249,4 +250,4 @@ function drawChart() {
 
 chooseNewPictures();
 getNames();
-drawChart();
+
