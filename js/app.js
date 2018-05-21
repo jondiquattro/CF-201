@@ -8,28 +8,28 @@ var sectionEl = document.getElementById('item-blocks') //for event listener
 var imgEl1 = document.getElementById('first-image');//for event listener
 var imgEl2 = document.getElementById('second-image');//for event listener
 var imgEl3 = document.getElementById('third-image');//for event listener
-// var resultUl = document.getElementById('product-result');//for display
+
 
 var totals;
 
 var picture1Index = 0;
 var picture2Index = 0;
-var picture3Index = 2;
+var picture3Index = 0;
 var totalClicks = 0;
 
 
 
-
-//========================
-function Picture (url, name) {  //constructor
-  this.url = url;
+function Picture(src, name) {
+  this.url = src;
   this.name = name;
   this.clicked = 0;
-  
-  
+
   pictureObjects.push(this);
 }
-if (localStorage.pictureObjects){
+
+
+
+if (localStorage.pictureObjects){//pictureobject is the key
 
   pictureObjects = JSON.parse(localStorage.getItem('pictureObjects'));
   
@@ -42,21 +42,21 @@ else{
   new Picture('img/breakfast.jpg', 'breakfast');
   new Picture('img/banana.jpg', 'banana');
   new Picture('img/bag.jpg', 'bag');
-  // new Picture('img/bubblegum.jpg', 'bubblegum');
-  // new Picture('img/chair.jpg', 'chair');
-  // new Picture('img/cthulhu.jpg', 'cthulu');
-  // new Picture('img/dog-duck.jpg', 'dog duck');
-  // new Picture('img/dragon.jpg', 'dragon');
-  // new Picture('img/pen.jpg', 'pen');
-  // new Picture('img/pet-sweep.jpg', 'pen');
-  // new Picture('img/scissors.jpg', 'scissors');
-  // new Picture('img/shark.jpg', 'shark');
-  // new Picture('img/sweep.png', 'sweep');
-  // new Picture('img/tauntaun.jpg', 'tauntaun');
-  // new Picture('img/unicorn.jpg', 'unicorn');
-  // new Picture('img/usb.gif', 'usb');
-  // new Picture('img/water-can.jpg', 'water can');
-  // new Picture('img/wine-glass.jpg', 'wine glass');
+  new Picture('img/bubblegum.jpg', 'bubblegum');
+  new Picture('img/chair.jpg', 'chair');
+  new Picture('img/cthulhu.jpg', 'cthulu');
+  new Picture('img/dog-duck.jpg', 'dog duck');
+  new Picture('img/dragon.jpg', 'dragon');
+  new Picture('img/pen.jpg', 'pen');
+  new Picture('img/pet-sweep.jpg', 'pen');
+  new Picture('img/scissors.jpg', 'scissors');
+  new Picture('img/shark.jpg', 'shark');
+  new Picture('img/sweep.png', 'sweep');
+  new Picture('img/tauntaun.jpg', 'tauntaun');
+  new Picture('img/unicorn.jpg', 'unicorn');
+  new Picture('img/usb.gif', 'usb');
+  new Picture('img/water-can.jpg', 'water can');
+  new Picture('img/wine-glass.jpg', 'wine glass');
   
   
   // console.error('objects created');
@@ -68,93 +68,64 @@ else{
 sectionEl.addEventListener('click', sectionCallback);
 
 function sectionCallback(event) {
-  noRepeat();
-  if(event.target.id === 'first-image'){//if id is the target vice div
+  checkTotalClicks();
+
+  if(event.target.id){
     totalClicks++;
-    pictureObjects[picture1Index].clicked++;
-    imgEl1.src = pictureObjects[picture1Index].url;
+    pictureObjects[event.target.id].clicked++;
+
     chooseNewPictures();
-    
-  } 
-  else if(event.target.id === 'second-image'){
-    totalClicks++;
-    pictureObjects[picture2Index].clicked++;
-    imgEl2.src = pictureObjects[picture2Index].url;
-    chooseNewPictures();
-    
-  }
-  else if(event.target.id === 'third-image'){
-    totalClicks++;
-    pictureObjects[picture3Index].clicked++;
-    imgEl3.src = pictureObjects[picture3Index].url;
-    chooseNewPictures();
-    
-  }
-  else {
+  } else {
     alert('click on an image');
   }
-  // renderTotals();
-}
-var cantBE=[];
-var picture2 = [];
-function noRepeat(){
-  cantBE.push(picture1Index);//picture1 = 0 so no other image can be index 0
-  console.log(cantBE);
-  for (var i = 0; i <cantBE.length; i++){
-
-    if (picture2Index === picture1Index[i]){
-  
-      chooseNewPictures();
-    };
-
-  };
-  
-
 };
+
 
 function checkTotalClicks() {
  
-  if(totalClicks >= 5){
+  if(totalClicks >= 25){
   getNames();
   drawChart();
-    // renderTotals();
+   alert('Thanks for your input! Have a nice day (:')
     localStorage.setItem('pictureObjects', JSON.stringify(pictureObjects));
     sectionEl.removeEventListener('click', sectionCallback);
 
   }
-}
-
+};
 
 
 
 function chooseNewPictures() {
-  checkTotalClicks()
-  picture1Index = Math.floor(Math.random() * pictureObjects.length);//ie .8 * 15
-  
-  imgEl1.src = pictureObjects[picture1Index].url; 
-  
-  picture2Index = Math.floor(Math.random() * pictureObjects.length); //outputs a number between 0 and length -1
-  picture2.push(picture2Index);
-  // console.log(picture2);
+
+  var cantBeThis = [picture1Index, picture2Index, picture3Index];
+  var previous1 = picture1Index; 0
+  var previous2 = picture2Index; 1
+  var previous3 = picture3Index; 2
+
+  do{
+    picture1Index = Math.floor(Math.random() * pictureObjects.length);
+  } while (cantBeThis.includes(picture1Index));
+  cantBeThis.push(picture1Index);
+
+  do{
+    picture2Index = Math.floor(Math.random() * pictureObjects.length);
+  } while (cantBeThis.includes(picture2Index));
+  cantBeThis.push(picture2Index);
+
+  do {
+    picture3Index = Math.floor(Math.random() * pictureObjects.length);
+  } while (cantBeThis.includes(picture3Index));
+
+  imgEl1.src = pictureObjects[picture1Index].url;
+  imgEl1.id = picture1Index; //sets the image id = to the reference of its corresponding object's position in the array of all images
   imgEl2.src = pictureObjects[picture2Index].url;
-  
-  picture3Index = Math.floor(Math.random() * pictureObjects.length);
-  imgEl3.src = pictureObjects[picture3Index].url; //url is a parameter
-}
+  imgEl2.id = picture2Index;
+  imgEl3.src = pictureObjects[picture3Index].url;
+  imgEl3.id = picture3Index;
 
-// function renderTotals(){      //creates and renders list items
-  
-// for (var i = 0; i < pictureObjects.length; i++){
+};
 
-//   var ulEl = document.getElementById('product-results');
-//   var liEl = document.createElement('li');
-  
-//   liEl.textContent = pictureObjects[i].name + ' clicked: ' + pictureObjects[i].clicked + ' times';
-//   ulEl.appendChild(liEl);
 
-// }
-
-// };
 
 var clicksArray=[];
 var nameArray =[];
@@ -176,27 +147,27 @@ var data = {
     
     data: clicksArray, // votes array we declared earlier
     backgroundColor: [
-      'pink',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
-      'navy',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
     ],
     hoverBackgroundColor: [
       'purple',

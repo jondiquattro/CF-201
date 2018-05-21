@@ -2,19 +2,39 @@
 header ul {
     display: inline-flex;
     float: right;
+    margin-right: 45px;
+    margin-bottom: 100px;
+
+   
 }
 header li {
-    margin: 5px;
+    width: 100px;
+    margin: 10px;
+    font-size: 26px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: red;
+  
+    background-color:rgb(241, 241, 241)
+
+
+
 }
-header img h1 {
+header img {
+    margin: 10px;
     float: left
     
 }
 header h1{
-    font-size: 30px;
+    font-size: 54px;
+    margin-top: 20px;
 }
 header {
-    height: 110px;
+    height: 125px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: blue;
+    background-color: rgb(224, 224, 224);
 }
 /* //////////////////////////////////////////////////// */
 /* //////////////////////////////////////////////////// */
@@ -31,6 +51,10 @@ aside {
     height: 600px;
     float: left;
     margin: 10px 22px 10px 10px;
+    background-color:rgb(241, 241, 241)
+}
+aside h1 {
+    font-size: 32px;
 }
 button{
     width: 650px;
@@ -63,4 +87,7 @@ float: left;
 }
 #product-results ul {
     list-style: none;
+}
+body {
+    background-color: rgb(224, 224, 224);
 }
